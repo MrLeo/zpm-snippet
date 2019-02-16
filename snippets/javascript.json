@@ -1,0 +1,147 @@
+{
+  "eslint-disable": {
+    "prefix": "eslint",
+    "body": ["/* eslint-disable */"],
+    "description": "禁用eslint"
+  },
+  "eslint-enable": {
+    "prefix": "eslint",
+    "body": ["/* eslint-enable */"],
+    "description": "启用eslint"
+  },
+  "eslint-disable-line": {
+    "prefix": "eslint",
+    "body": [" // eslint-disable-line"],
+    "description": "eslint忽略当前行"
+  },
+  "eslint-disable-next-line": {
+    "prefix": "eslint",
+    "body": [" // eslint-disable-next-line"],
+    "description": "eslint忽略下一行"
+  },
+
+  "ZPError": {
+    "prefix": ["zpthrow"],
+    "body": [
+      "throw new ZPError({ code: ${1:res.code || 500}, message: ${2:res.message || '出错了'}, taskId: ${3:res.taskId || ctx.request.headers.get('zp-trace-id') ||''} })"
+    ],
+    "description": "使用ZPError抛出异常"
+  },
+
+  "ctx.GET": {
+    "prefix": ["zpfe", "zpfe.get"],
+    "body": [
+      "// import log from '@zpfe/log'",
+      "import { simplify } from '@zpfe/utils-axios'",
+      "import ZPError from '../../util/error'",
+      "import request, { baseURL } from '../../util/request'",
+      "import { decryptUUID } from '../../util/uuid'",
+      "import { required } from '../../util/verify'",
+      "",
+      "/**",
+      " * $1",
+      " *",
+      " * @param {any} ctx",
+      " */",
+      "async function GET(ctx) {",
+      "  try {",
+      "    // #region 获取参数",
+      "    let clientip = ctx.request.ip",
+      "    let params = ctx.request.query",
+      "    ctx.log.info('【Log】GET -> params: $1', JSON.stringify(params))",
+      "    // #endregion",
+      "",
+      "    let loginUserId = decryptUUID(await required(ctx,'uid'))",
+      "",
+      "    const $fetch = request(ctx)",
+      "",
+      "    let { data: res } = await $fetch.get(`$4`, { params })",
+      "    ctx.log.info('【Log】GET -> res: $1', JSON.stringify(res))",
+      "",
+      "    ctx.response.body = res",
+      "    // ctx.response.set({ code: 200, data: res })",
+      "  } catch (err) {",
+      "    ctx.log.error('【Log】error -> $1', simplify(err))",
+      "    ctx.response.set({ code: err.code || 500, message: err.message || '网络异常', data: '', taskId: err.taskId || ctx.request.headers.get('zp-trace-id') }, 200)",
+      "  }",
+      "}",
+      "",
+      "export default { GET }"
+    ],
+    "description": "ctx get"
+  },
+  "ctx.POST": {
+    "prefix": ["zpfe", "zpfe.post"],
+    "body": [
+      "// import log from '@zpfe/log'",
+      "import { simplify } from '@zpfe/utils-axios'",
+      "import ZPError from '../../util/error'",
+      "import request, { baseURL } from '../../util/request'",
+      "import { decryptUUID } from '../../util/uuid'",
+      "import { required } from '../../util/verify'",
+      "",
+      "/**",
+      " * $1",
+      " *",
+      " * @param {any} ctx",
+      " */",
+      "async function POST(ctx) {",
+      "  try {",
+      "    // #region 获取参数",
+      "    let clientip = ctx.request.ip",
+      "    let headers = ctx.request.headers.all()",
+      "    let params = await ctx.request.body.asJson()",
+      "    ctx.log.info('【Log】POST -> params: $1', JSON.stringify(params))",
+      "    // #endregion",
+      "",
+      "    let loginUserId = decryptUUID(await required(ctx,'uid'))",
+      "",
+      "    const $fetch = request(ctx)",
+      "",
+      "    let { data: res } = await $fetch.post(`$4`, JSON.stringify(params))",
+      "    ctx.log.info('【Log】POST -> res: $1', JSON.stringify(res))",
+      "",
+      "    ctx.response.body = res",
+      "    // ctx.response.set({ code: 200, data: res })",
+      "  } catch (err) {",
+      "    ctx.log.error('【Log】error -> $1', simplify(err))",
+      "    ctx.response.set({ code: err.code || 500, message: err.message || '网络异常', data: '',taskId: err.taskId || ctx.request.headers.get('zp-trace-id') }, 200)",
+      "  }",
+      "}",
+      "",
+      "export default { POST }"
+    ],
+    "description": "ctx post"
+  },
+
+  "ctx.log.info": {
+    "prefix": "cli",
+    "body": ["ctx.log.info(`【Log】$1 -> `, JSON.stringify($2))$3"],
+    "description": "ctx log info output"
+  },
+  "ctx.log.error": {
+    "prefix": "cle",
+    "body": ["ctx.log.error(`【Log】error -> $1`, simplify(err))$2"],
+    "description": "ctx log error output"
+  },
+
+  "Print to console": {
+    "prefix": "cl",
+    "body": ["console.log(`[$1]$2 -> $3`,$4)$5"],
+    "description": "Log output to console"
+  },
+  "Print to console with color": {
+    "prefix": "cl",
+    "body": ["console.log(`%c[$1]$2 -> $3`,'color:#1B8BFF;',$4)$5"],
+    "description": "Log output to console with color"
+  },
+  "Print to console with group": {
+    "prefix": "cg",
+    "body": [
+      "console.groupCollapsed(`------------------> $1 <------------------`)",
+      "console.log(`[$2]$3 -> $4`,$5)$6",
+      "console.groupEnd()"
+    ],
+    "description": "Log output to console with group"
+  }
+}
