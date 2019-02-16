@@ -1,10 +1,10 @@
-# zpm-snippet 代码片段
+# zpm-snippet
 
-> [VS Code 插件开发文档-中文版](https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/)
->
-> [vscode 插件开发实践](https://juejin.im/post/5c63a56a6fb9a049e063d491)
->
-> [插件市场](https://marketplace.visualstudio.com/)
+> Visual Studio Code 代码片段
+
+- [VS Code 插件开发文档-中文版](https://liiked.github.io/VS-Code-Extension-Doc-ZH/#/)
+- [vscode 插件开发实践](https://juejin.im/post/5c63a56a6fb9a049e063d491)
+- [插件市场](https://marketplace.visualstudio.com/)
 
 # 准备
 
