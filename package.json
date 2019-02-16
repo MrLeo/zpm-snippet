@@ -3,8 +3,8 @@
   "displayName": "zpm-snippet",
   "description": "zpm-snippet",
   "version": "0.0.1",
-  "publisher": "Leo",
-  "icon": "icon/logo.png",
+  "publisher": "MrLeo",
+  "icon": "logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/MrLeo/zpm-snippet.git"
