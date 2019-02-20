@@ -30,7 +30,7 @@
       " * @version: 0.0.0",
       " * @Date: 2019-02-20 17:17:42",
       " * @LastEditTime: 2019-02-20 17:18:40",
-      " * @Description: $0",
+      " * @Description: $1",
       " */",
       "",
       "import qs from 'qs'",
@@ -44,7 +44,7 @@
       "      loginUserId: init.loginUserId",
       "    }",
       "",
-      "    let { data: res } = await init.\\$fetch.post(`$5?${qs.stringify(params)}`)",
+      "    let { data: res } = await init.\\$fetch.post(`$2?${qs.stringify(params)}`)",
       "",
       "    ctx.response.body = res",
       "    // ctx.response.set({ code: 200, data: res, message: res.message || '成功', taskId: res.taskId || ctx.request.headers.get('zp-trace-id') })",
@@ -60,7 +60,7 @@
       "      loginUserId: init.loginUserId",
       "    }",
       "",
-      "    let { data: res } = await init.\\$fetch.get(`$5`, { params })",
+      "    let { data: res } = await init.\\$fetch.get(`$2`, { params })",
       "",
       "    ctx.response.body = res",
       "    // ctx.response.set({ code: 200, data: res, message: res.message || '成功', taskId: res.taskId || ctx.request.headers.get('zp-trace-id') })",
@@ -69,8 +69,7 @@
       "  }",
       "}",
       "",
-      "export default { GET, POST }",
-      ""
+      "export default { GET, POST }"
     ],
     "description": "zpfe api init"
   },
