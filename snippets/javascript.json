@@ -47,7 +47,7 @@
       "    let { data: res } = await init.\\$fetch.post(`$2?${qs.stringify(params)}`)",
       "",
       "    ctx.response.body = res",
-      "    // ctx.response.set({ code: 200, data: res, message: res.message || '成功', taskId: res.taskId || ctx.request.headers.get('zp-trace-id') })",
+      "    // ctx.response.set({ code: 200, data: res, message: res.message || '成功', taskId: res.taskId || ctx.request.headers.get('x-zp-request-id') })",
       "  } catch (err) {",
       "    errorHandler(ctx, err)",
       "  }",
@@ -63,7 +63,7 @@
       "    let { data: res } = await init.\\$fetch.get(`$2`, { params })",
       "",
       "    ctx.response.body = res",
-      "    // ctx.response.set({ code: 200, data: res, message: res.message || '成功', taskId: res.taskId || ctx.request.headers.get('zp-trace-id') })",
+      "    // ctx.response.set({ code: 200, data: res, message: res.message || '成功', taskId: res.taskId || ctx.request.headers.get('x-zp-request-id') })",
       "  } catch (err) {",
       "    errorHandler(ctx, err)",
       "  }",
@@ -86,7 +86,7 @@
   "ZPError": {
     "prefix": ["zpthrow"],
     "body": [
-      "throw new ZPError({ code: ${1:res.code || 500}, message: ${2:res.message || '出错了'}, taskId: ${3:res.taskId || ctx.request.headers.get('zp-trace-id') ||''} })"
+      "throw new ZPError({ code: ${1:res.code || 500}, message: ${2:res.message || '出错了'}, taskId: ${3:res.taskId || ctx.request.headers.get('x-zp-request-id') ||''} })"
     ],
     "description": "使用ZPError抛出异常"
   },
