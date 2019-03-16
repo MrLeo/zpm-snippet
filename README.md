@@ -1,13 +1,12 @@
 # [zpm-snippet](https://marketplace.visualstudio.com/items?itemName=MrLeo.zpm-snippet)
 
-应用商店地址: [https://marketplace.visualstudio.com/items?itemName=MrLeo.zpm-snippet](https://marketplace.visualstudio.com/items?itemName=MrLeo.zpm-snippet)
+应用商店地址: [https://marketplace.visualstudio.com/items?itemName=MrLeo.zpm](https://marketplace.visualstudio.com/items?itemName=MrLeo.zpm)
 
 > 智联 ZPFE API 项目 Visual Studio Code 代码片段
 
 # 快捷键
 
 ## javascript
-
 
 - zpfe.init
 
@@ -21,43 +20,43 @@
    * @LastEditTime: 2019-02-20 17:18:40
    * @Description: $1
    */
-  
+
   import qs from 'qs'
   import ZPError from '../../util/error'
   import { initHandler, errorHandler, throwIfMiss } from '../../util/'
-  
-  async function POST (ctx) {
+
+  async function POST(ctx) {
     try {
       const init = await initHandler(ctx, { logged: true })
       let params = {
-        loginUserId: init.loginUserId
+        loginUserId: init.loginUserId,
       }
-  
+
       let { data: res } = await init.$fetch.post(`$2?${qs.stringify(params)}`)
-  
+
       ctx.response.body = res
       // ctx.response.set({ code: 200, data: res, message: res.message || '成功', taskId: res.taskId || ctx.request.headers.get('x-zp-request-id') })
     } catch (err) {
       errorHandler(ctx, err)
     }
   }
-  
-  async function GET (ctx) {
+
+  async function GET(ctx) {
     try {
       const init = await initHandler(ctx, { logged: true })
       let params = {
-        loginUserId: init.loginUserId
+        loginUserId: init.loginUserId,
       }
-  
+
       let { data: res } = await init.$fetch.get(`$2`, { params })
-  
+
       ctx.response.body = res
       // ctx.response.set({ code: 200, data: res, message: res.message || '成功', taskId: res.taskId || ctx.request.headers.get('x-zp-request-id') })
     } catch (err) {
       errorHandler(ctx, err)
     }
   }
-  
+
   export default { GET, POST }
   ```
 
@@ -72,11 +71,11 @@
   ```
 
   ```javascript
-   // eslint-disable-line
+  // eslint-disable-line
   ```
 
   ```javascript
-   // eslint-disable-next-line
+  // eslint-disable-next-line
   ```
 
 - cli
@@ -114,8 +113,6 @@
   console.log(`[$2]$3 -> $4`,$5)$6
   console.groupEnd()
   ```
-
-  
 
 # 开发
 

@@ -7,7 +7,7 @@
   "icon": "logo.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MrLeo/zpm-snippet.git"
+    "url": "https://github.com/MrLeo/vscode-zpm.git"
   },
   "engines": {
     "vscode": "^1.31.0"
